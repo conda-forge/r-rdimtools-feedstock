@@ -1,6 +1,5 @@
 {% set version = '1.1.2' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-rdimtools
@@ -13,8 +12,7 @@ source:
   sha256: 867630ee2588ce22e22614b66c5b60fb0f7e8b74a08c25c3ed66c9e4bd73882e
 
 build:
-  merge_build_host: True  # [win]
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -27,6 +25,7 @@ requirements:
   build:
     - {{ compiler('c') }}            # [not win]
     - {{ compiler('m2w64_c') }}      # [win]
+    - {{ stdlib('c') }}
     - {{ compiler('cxx') }}          # [not win]
     - {{ compiler('m2w64_cxx') }}    # [win]
     - {{ posix }}filesystem          # [win]
@@ -55,11 +54,9 @@ requirements:
     - libblas
     - liblapack
     - llvm-openmp
-    - m2w64-libwinpthread-git  # [win]
     - r-rgl
   run:
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-admm
     - r-cvxr >=1.0
     - r-mass
@@ -72,7 +69,6 @@ requirements:
     - r-rdpack
     - r-maotai >=0.2.4
     - r-mclustcomp
-    - m2w64-libwinpthread-git  # [win]
 
 test:
   commands:
