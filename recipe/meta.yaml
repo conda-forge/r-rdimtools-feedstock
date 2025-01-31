@@ -12,7 +12,7 @@ source:
   sha256: 867630ee2588ce22e22614b66c5b60fb0f7e8b74a08c25c3ed66c9e4bd73882e
 
 build:
-  number: 3
+  number: 4
   rpaths:
     - lib/R/lib/
     - lib/
@@ -20,6 +20,7 @@ build:
     - '*/r.dll'  # [win]
     - '*/Rlapack.dll'  # [win]
     - '*/Rblas.dll'    # [win]
+  skip: True  # [ppc64le]
 
 requirements:
   build:
@@ -39,6 +40,19 @@ requirements:
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
     - {{ cdt('mesa-libgl-devel') }}  # [linux]
     - cross-r-base {{ r_base }}      # [build_platform != target_platform]
+    - r-admm                         # [build_platform != target_platform]
+    - r-cvxr >=1.0                   # [build_platform != target_platform]
+    - r-mass                         # [build_platform != target_platform]
+    - r-rann                         # [build_platform != target_platform]
+    - r-rspectra                     # [build_platform != target_platform]
+    - r-rcpp >=0.12.15               # [build_platform != target_platform]
+    - r-rcpparmadillo                # [build_platform != target_platform]
+    - r-rcppde                       # [build_platform != target_platform]
+    - r-rcppdist                     # [build_platform != target_platform]
+    - r-rdpack                       # [build_platform != target_platform]
+    - r-maotai >=0.2.4               # [build_platform != target_platform]
+    - r-mclustcomp                   # [build_platform != target_platform]
+    - r-rgl                          # [build_platform != target_platform]
   host:
     - r-base
     - r-admm
@@ -84,7 +98,6 @@ about:
   summary: We provide linear and nonlinear dimension reduction techniques. Intrinsic dimension
     estimation methods for exploratory analysis are also provided. For more details
     on the package, see the paper by You and Shung (2022) <doi:10.1016/j.simpa.2022.100414>.
-  license_family: MIT
   license_file:
     - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
     - LICENSE
