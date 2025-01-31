@@ -20,6 +20,7 @@ build:
     - '*/r.dll'  # [win]
     - '*/Rlapack.dll'  # [win]
     - '*/Rblas.dll'    # [win]
+  skip: True  # [ppc64le]
 
 requirements:
   build:
