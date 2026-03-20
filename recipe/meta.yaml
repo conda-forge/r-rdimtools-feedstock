@@ -12,7 +12,7 @@ source:
   sha256: 79aae1ef1439f565e28734f71b599bdc1c8896de4802d4fe74bedb0d605a3fc7
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -38,8 +38,6 @@ requirements:
     - {{ posix }}coreutils           # [win]
     - {{ posix }}zip                 # [win]
     - xorg-libxfixes                 # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
     - cross-r-base {{ r_base }}      # [build_platform != target_platform]
     - r-admm                         # [build_platform != target_platform]
     - r-cvxr >=1.0                   # [build_platform != target_platform]
@@ -72,6 +70,7 @@ requirements:
     - liblapack
     - llvm-openmp
     - r-rgl
+    - libgl-devel                    # [linux]
   run:
     - r-base
     - r-admm
